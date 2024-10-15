@@ -12,16 +12,16 @@ public class Utilisateur {
     @Column(name = "nom", nullable=false)
     private String nom;
 
-    @Column(name = "nom", nullable=false)
+    @Column(name = "prenom", nullable=false)
     private String prenom;
 
-    @Column(name = "nom", nullable=false)
+    @Column(name = "mail", nullable=false)
     private String email;
 
-    @Column(name = "nom", nullable=false)
+    @Column(name = "password", nullable=false)
     private String password;
 
-    @Column(name = "nom", nullable=false)
+    @Column(name = "username", nullable=false)
     private String username;
 
     public int getId() {
