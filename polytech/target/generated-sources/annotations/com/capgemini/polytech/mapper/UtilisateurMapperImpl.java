@@ -7,7 +7,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-10-17T11:12:27+0200",
+    date = "2024-10-17T12:31:31+0200",
     comments = "version: 1.6.0.Beta1, compiler: javac, environment: Java 22.0.1 (Oracle Corporation)"
 )
 public class UtilisateurMapperImpl implements UtilisateurMapper {
@@ -20,6 +20,8 @@ public class UtilisateurMapperImpl implements UtilisateurMapper {
 
         UtilisateurDTO utilisateurDTO = new UtilisateurDTO();
 
+        utilisateurDTO.setUsername( utilisateur.getUsername() );
+
         return utilisateurDTO;
     }
 
@@ -30,6 +32,8 @@ public class UtilisateurMapperImpl implements UtilisateurMapper {
         }
 
         Utilisateur utilisateur = new Utilisateur();
+
+        utilisateur.setUsername( terrainDTO.getUsername() );
 
         return utilisateur;
     }
@@ -42,6 +46,12 @@ public class UtilisateurMapperImpl implements UtilisateurMapper {
 
         UtilisateurCreateDTO utilisateurCreateDTO = new UtilisateurCreateDTO();
 
+        utilisateurCreateDTO.setNom( utilisateur.getNom() );
+        utilisateurCreateDTO.setPrenom( utilisateur.getPrenom() );
+        utilisateurCreateDTO.setEmail( utilisateur.getEmail() );
+        utilisateurCreateDTO.setPassword( utilisateur.getPassword() );
+        utilisateurCreateDTO.setUsername( utilisateur.getUsername() );
+
         return utilisateurCreateDTO;
     }
 
@@ -52,6 +62,12 @@ public class UtilisateurMapperImpl implements UtilisateurMapper {
         }
 
         Utilisateur utilisateur = new Utilisateur();
+
+        utilisateur.setNom( terrainCreateDT0.getNom() );
+        utilisateur.setPrenom( terrainCreateDT0.getPrenom() );
+        utilisateur.setEmail( terrainCreateDT0.getEmail() );
+        utilisateur.setPassword( terrainCreateDT0.getPassword() );
+        utilisateur.setUsername( terrainCreateDT0.getUsername() );
 
         return utilisateur;
     }
