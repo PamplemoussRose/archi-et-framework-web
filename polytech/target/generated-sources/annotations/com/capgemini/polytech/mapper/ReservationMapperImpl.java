@@ -1,41 +1,41 @@
 package com.capgemini.polytech.mapper;
 
 import com.capgemini.polytech.dto.ReservationDTO;
-import com.capgemini.polytech.entite.Reservation;
+import com.capgemini.polytech.entite.ReservationEntity;
 import javax.annotation.processing.Generated;
+import org.springframework.stereotype.Component;
 
 @Generated(
-    value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-10-17T12:31:32+0200",
-    comments = "version: 1.6.0.Beta1, compiler: javac, environment: Java 22.0.1 (Oracle Corporation)"
+    value = "org.mapstruct.ap.MappingProcessor"
 )
+@Component
 public class ReservationMapperImpl implements ReservationMapper {
 
     @Override
-    public ReservationDTO entiteToDto(Reservation entity) {
+    public ReservationDTO toDTO(ReservationEntity entity) {
         if ( entity == null ) {
             return null;
         }
 
-        ReservationDTO reservationDTO = new ReservationDTO();
+        ReservationDTO.ReservationDTOBuilder reservationDTO = ReservationDTO.builder();
 
-        reservationDTO.setUtilisateurId( entity.getUtilisateurId() );
-        reservationDTO.setTerrainId( entity.getTerrainId() );
+        reservationDTO.utilisateurId( entity.getUtilisateurId() );
+        reservationDTO.terrainId( entity.getTerrainId() );
 
-        return reservationDTO;
+        return reservationDTO.build();
     }
 
     @Override
-    public Reservation dtoToEntite(ReservationDTO dto) {
+    public ReservationEntity toEntity(ReservationDTO dto) {
         if ( dto == null ) {
             return null;
         }
 
-        Reservation reservation = new Reservation();
+        ReservationEntity.ReservationEntityBuilder reservationEntity = ReservationEntity.builder();
 
-        reservation.setUtilisateurId( dto.getUtilisateurId() );
-        reservation.setTerrainId( dto.getTerrainId() );
+        reservationEntity.utilisateurId( dto.getUtilisateurId() );
+        reservationEntity.terrainId( dto.getTerrainId() );
 
-        return reservation;
+        return reservationEntity.build();
     }
 }

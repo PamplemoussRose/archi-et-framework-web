@@ -1,74 +1,47 @@
 package com.capgemini.polytech.mapper;
 
-import com.capgemini.polytech.dto.UtilisateurCreateDTO;
 import com.capgemini.polytech.dto.UtilisateurDTO;
-import com.capgemini.polytech.entite.Utilisateur;
+import com.capgemini.polytech.entite.UtilisateurEntity;
 import javax.annotation.processing.Generated;
+import org.springframework.stereotype.Component;
 
 @Generated(
-    value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-10-17T12:31:31+0200",
-    comments = "version: 1.6.0.Beta1, compiler: javac, environment: Java 22.0.1 (Oracle Corporation)"
+    value = "org.mapstruct.ap.MappingProcessor"
 )
+@Component
 public class UtilisateurMapperImpl implements UtilisateurMapper {
 
     @Override
-    public UtilisateurDTO entiteToDto(Utilisateur utilisateur) {
-        if ( utilisateur == null ) {
+    public UtilisateurDTO toDTO(UtilisateurEntity utilisateurEntity) {
+        if ( utilisateurEntity == null ) {
             return null;
         }
 
-        UtilisateurDTO utilisateurDTO = new UtilisateurDTO();
+        UtilisateurDTO.UtilisateurDTOBuilder utilisateurDTO = UtilisateurDTO.builder();
 
-        utilisateurDTO.setUsername( utilisateur.getUsername() );
+        utilisateurDTO.nom( utilisateurEntity.getNom() );
+        utilisateurDTO.prenom( utilisateurEntity.getPrenom() );
+        utilisateurDTO.email( utilisateurEntity.getEmail() );
+        utilisateurDTO.password( utilisateurEntity.getPassword() );
+        utilisateurDTO.username( utilisateurEntity.getUsername() );
 
-        return utilisateurDTO;
+        return utilisateurDTO.build();
     }
 
     @Override
-    public Utilisateur dtoToEntite(UtilisateurDTO terrainDTO) {
+    public UtilisateurEntity toEntity(UtilisateurDTO terrainDTO) {
         if ( terrainDTO == null ) {
             return null;
         }
 
-        Utilisateur utilisateur = new Utilisateur();
+        UtilisateurEntity.UtilisateurEntityBuilder utilisateurEntity = UtilisateurEntity.builder();
 
-        utilisateur.setUsername( terrainDTO.getUsername() );
+        utilisateurEntity.nom( terrainDTO.getNom() );
+        utilisateurEntity.prenom( terrainDTO.getPrenom() );
+        utilisateurEntity.email( terrainDTO.getEmail() );
+        utilisateurEntity.password( terrainDTO.getPassword() );
+        utilisateurEntity.username( terrainDTO.getUsername() );
 
-        return utilisateur;
-    }
-
-    @Override
-    public UtilisateurCreateDTO entiteToCreateDto(Utilisateur utilisateur) {
-        if ( utilisateur == null ) {
-            return null;
-        }
-
-        UtilisateurCreateDTO utilisateurCreateDTO = new UtilisateurCreateDTO();
-
-        utilisateurCreateDTO.setNom( utilisateur.getNom() );
-        utilisateurCreateDTO.setPrenom( utilisateur.getPrenom() );
-        utilisateurCreateDTO.setEmail( utilisateur.getEmail() );
-        utilisateurCreateDTO.setPassword( utilisateur.getPassword() );
-        utilisateurCreateDTO.setUsername( utilisateur.getUsername() );
-
-        return utilisateurCreateDTO;
-    }
-
-    @Override
-    public Utilisateur createDtoToEntite(UtilisateurCreateDTO terrainCreateDT0) {
-        if ( terrainCreateDT0 == null ) {
-            return null;
-        }
-
-        Utilisateur utilisateur = new Utilisateur();
-
-        utilisateur.setNom( terrainCreateDT0.getNom() );
-        utilisateur.setPrenom( terrainCreateDT0.getPrenom() );
-        utilisateur.setEmail( terrainCreateDT0.getEmail() );
-        utilisateur.setPassword( terrainCreateDT0.getPassword() );
-        utilisateur.setUsername( terrainCreateDT0.getUsername() );
-
-        return utilisateur;
+        return utilisateurEntity.build();
     }
 }
