@@ -2,6 +2,7 @@ package com.capgemini.polytech.entite;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
 import jakarta.persistence.Table;
 import lombok.*;
 
@@ -13,6 +14,7 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 @Table(name = "RESERVATION")
+@IdClass(ReservationId.class)
 public class ReservationEntity {
     @Id
     private int utilisateurId;

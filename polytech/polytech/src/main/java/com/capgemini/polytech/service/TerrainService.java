@@ -7,6 +7,7 @@ import com.capgemini.polytech.repository.TerrainRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,27 +20,39 @@ public class TerrainService {
     /*
     PRENDS TOUJOURS UN DTO EN PARAMETRE CAR LE CONTROLLEUR VA
     EN CREER UN AVEC LE FORM EN WEB
+    LE DTO DOIT ETRE TRANSFORME EN ENTITE POUR FARIE LES ACTIONS DU REPOSITORY
+    PUIS RETRANSFORME EN DTO POUR RETOURNER LES INFOS
      */
 
     public TerrainDTO createTerrain(TerrainDTO terrain) {
         // Prends un DTO, transform en entité pour creer l'utilisateur et renvoie un DTO pour
         // recuperer les infos de l'utilisateur
-        return null;
+        TerrainEntity entity = terrainMapper.toEntity(terrain);
+        entity = terrainRepository.save(entity);
+        return terrainMapper.toDTO(entity);
     }
 
     public List<TerrainDTO> getAllTerrain() {
-        return null;
+        List<TerrainEntity> entities = terrainRepository.findAll();
+        List<TerrainDTO> dtos = new ArrayList<TerrainDTO>();
+        for (TerrainEntity entity : entities) {
+            dtos.add(terrainMapper.toDTO(entity));
+        }
+        return dtos;
     }
 
     public TerrainDTO getTerrain(Integer id) {
-        return null;
+        TerrainEntity entity = terrainRepository.findById(id).get();
+        return terrainMapper.toDTO(entity);
     }
 
-    public TerrainDTO updateTerrain(TerrainEntity terrain) {
-        return null;
+    public TerrainDTO updateTerrain(TerrainDTO terrain) {
+        TerrainEntity entity = terrainMapper.toEntity(terrain);
+        entity = terrainRepository.save(entity);
+        return terrainMapper.toDTO(entity);
     }
 
     public void deleteTerrain(Integer id) {
-
+        terrainRepository.deleteById(id);
     }
 }
