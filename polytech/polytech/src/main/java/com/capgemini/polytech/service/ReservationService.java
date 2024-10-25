@@ -2,6 +2,7 @@ package com.capgemini.polytech.service;
 
 import com.capgemini.polytech.dto.ReservationDTO;
 import com.capgemini.polytech.entite.ReservationEntity;
+import com.capgemini.polytech.entite.TerrainEntity;
 import com.capgemini.polytech.mapper.ReservationMapper;
 import com.capgemini.polytech.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,10 +46,10 @@ public class ReservationService {
         return reservationMapper.toDTO(entity);
     }
 
-    public ReservationDTO updateReservation(ReservationDTO reservationDTO) {
-        ReservationEntity entity = reservationMapper.toEntity(reservationDTO);
-        entity = reservationRepository.save(entity);
-        return reservationMapper.toDTO(entity);
+    public ReservationDTO updateReservation(Integer id, ReservationDTO reservationDTO) {
+        ReservationEntity existingEntity = reservationRepository.findById(id).get();
+        existingEntity.setReservation(reservationDTO.getReservation());
+        return reservationMapper.toDTO(existingEntity);
     }
 
     public void deleteReservation(Integer id) {

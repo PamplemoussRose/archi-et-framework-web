@@ -46,10 +46,14 @@ public class TerrainService {
         return terrainMapper.toDTO(entity);
     }
 
-    public TerrainDTO updateTerrain(TerrainDTO terrain) {
-        TerrainEntity entity = terrainMapper.toEntity(terrain);
-        entity = terrainRepository.save(entity);
-        return terrainMapper.toDTO(entity);
+    public TerrainDTO updateTerrain(Integer id, TerrainDTO terrain) {
+        TerrainEntity existingEntity = terrainRepository.findById(id).get();
+        existingEntity.setNom(terrain.getNom());
+        existingEntity.setQuantite(terrain.getQuantite());
+        existingEntity.setDescription(terrain.getDescription());
+        existingEntity.setPoint_geo(terrain.getPoint_geo());
+        existingEntity = terrainRepository.save(existingEntity);
+        return terrainMapper.toDTO(existingEntity);
     }
 
     public void deleteTerrain(Integer id) {

@@ -21,6 +21,7 @@ public class ReservationMapperImpl implements ReservationMapper {
 
         reservationDTO.utilisateurId( entity.getUtilisateurId() );
         reservationDTO.terrainId( entity.getTerrainId() );
+        reservationDTO.reservation( entity.getReservation() );
 
         return reservationDTO.build();
     }
@@ -35,6 +36,7 @@ public class ReservationMapperImpl implements ReservationMapper {
 
         reservationEntity.utilisateurId( dto.getUtilisateurId() );
         reservationEntity.terrainId( dto.getTerrainId() );
+        reservationEntity.reservation( dto.getReservation() );
 
         return reservationEntity.build();
     }

@@ -1,6 +1,7 @@
 package com.capgemini.polytech.service;
 
 import com.capgemini.polytech.dto.UtilisateurDTO;
+import com.capgemini.polytech.entite.TerrainEntity;
 import com.capgemini.polytech.entite.UtilisateurEntity;
 import com.capgemini.polytech.mapper.UtilisateurMapper;
 import com.capgemini.polytech.repository.UtilisateurRepository;
@@ -44,10 +45,15 @@ public class UtilisateurService {
         return utilisateurMapper.toDTO(entity);
     }
 
-    public UtilisateurDTO updateUtilisateur(UtilisateurDTO utilisateurDTO) {
-        UtilisateurEntity entity = utilisateurMapper.toEntity(utilisateurDTO);
-        entity = utilisateurRepository.save(entity);
-        return utilisateurMapper.toDTO(entity);
+    public UtilisateurDTO updateUtilisateur(Integer id, UtilisateurDTO utilisateur) {
+        UtilisateurEntity existingEntity = utilisateurRepository.findById(id).get();
+        existingEntity.setNom(utilisateur.getNom());
+        existingEntity.setPrenom(utilisateur.getPrenom());
+        existingEntity.setEmail(utilisateur.getEmail());
+        existingEntity.setPassword(utilisateur.getPassword());
+        existingEntity.setUsername(utilisateur.getUsername());
+        existingEntity = utilisateurRepository.save(existingEntity);
+        return utilisateurMapper.toDTO(existingEntity);
     }
 
     public void deleteUtilisateur(Integer id) {

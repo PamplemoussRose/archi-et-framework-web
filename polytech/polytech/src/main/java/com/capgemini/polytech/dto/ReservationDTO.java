@@ -15,4 +15,5 @@ public class ReservationDTO {
 
     private int terrainId;
 
+    private int reservation;
 }
