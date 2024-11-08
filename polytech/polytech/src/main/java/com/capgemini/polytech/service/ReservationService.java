@@ -2,11 +2,8 @@ package com.capgemini.polytech.service;
 
 import com.capgemini.polytech.dto.ReservationDTO;
 import com.capgemini.polytech.entite.ReservationEntity;
-import com.capgemini.polytech.entite.TerrainEntity;
 import com.capgemini.polytech.mapper.ReservationMapper;
 import com.capgemini.polytech.repository.ReservationRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,10 +11,15 @@ import java.util.List;
 
 @Service
 public class ReservationService {
-    @Autowired
+
     private ReservationRepository reservationRepository;
-    @Autowired
+
     private ReservationMapper reservationMapper;
+
+    public ReservationService(ReservationRepository reservationRepository, ReservationMapper reservationMapper) {
+        this.reservationRepository = reservationRepository;
+        this.reservationMapper = reservationMapper;
+    }
 
     /*
     PRENDS TOUJOURS UN DTO EN PARAMETRE CAR LE CONTROLLEUR VA
@@ -49,6 +51,7 @@ public class ReservationService {
     public ReservationDTO updateReservation(Integer id, ReservationDTO reservationDTO) {
         ReservationEntity existingEntity = reservationRepository.findById(id).get();
         existingEntity.setReservation(reservationDTO.getReservation());
+        existingEntity = reservationRepository.save(existingEntity);
         return reservationMapper.toDTO(existingEntity);
     }
 

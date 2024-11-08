@@ -4,7 +4,6 @@ import com.capgemini.polytech.dto.TerrainDTO;
 import com.capgemini.polytech.entite.TerrainEntity;
 import com.capgemini.polytech.mapper.TerrainMapper;
 import com.capgemini.polytech.repository.TerrainRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,10 +11,15 @@ import java.util.List;
 
 @Service
 public class TerrainService {
-    @Autowired
+
     private TerrainRepository terrainRepository;
-    @Autowired
+
     private TerrainMapper terrainMapper;
+
+    public TerrainService(TerrainRepository terrainRepository, TerrainMapper terrainMapper) {
+        this.terrainRepository = terrainRepository;
+        this.terrainMapper = terrainMapper;
+    }
 
     /*
     PRENDS TOUJOURS UN DTO EN PARAMETRE CAR LE CONTROLLEUR VA

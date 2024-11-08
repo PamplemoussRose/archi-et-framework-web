@@ -1,11 +1,9 @@
 package com.capgemini.polytech.service;
 
 import com.capgemini.polytech.dto.UtilisateurDTO;
-import com.capgemini.polytech.entite.TerrainEntity;
 import com.capgemini.polytech.entite.UtilisateurEntity;
 import com.capgemini.polytech.mapper.UtilisateurMapper;
 import com.capgemini.polytech.repository.UtilisateurRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,10 +11,15 @@ import java.util.List;
 
 @Service
 public class UtilisateurService {
-    @Autowired
+
     private UtilisateurRepository utilisateurRepository;
-    @Autowired
+
     private UtilisateurMapper utilisateurMapper;
+
+    public UtilisateurService(UtilisateurRepository utilisateurRepository, UtilisateurMapper utilisateurMapper) {
+        this.utilisateurRepository = utilisateurRepository;
+        this.utilisateurMapper = utilisateurMapper;
+    }
 
     /*
     PRENDS TOUJOURS UN DTO EN PARAMETRE CAR LE CONTROLLEUR VA
