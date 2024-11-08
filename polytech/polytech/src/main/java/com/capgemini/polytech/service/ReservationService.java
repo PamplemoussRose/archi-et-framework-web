@@ -2,6 +2,7 @@ package com.capgemini.polytech.service;
 
 import com.capgemini.polytech.dto.ReservationDTO;
 import com.capgemini.polytech.entite.ReservationEntity;
+import com.capgemini.polytech.exception.ReservationNotFoundException;
 import com.capgemini.polytech.mapper.ReservationMapper;
 import com.capgemini.polytech.repository.ReservationRepository;
 import org.springframework.stereotype.Service;
@@ -43,19 +44,22 @@ public class ReservationService {
         return dtos;
     }
 
-    public ReservationDTO getReservation(Integer id) {
-        ReservationEntity entity =  reservationRepository.findById(id).get();
+    public ReservationDTO getReservation(Integer id) throws ReservationNotFoundException {
+        ReservationEntity entity =  reservationRepository.findById(id).orElseThrow(ReservationNotFoundException::new);
         return reservationMapper.toDTO(entity);
     }
 
-    public ReservationDTO updateReservation(Integer id, ReservationDTO reservationDTO) {
-        ReservationEntity existingEntity = reservationRepository.findById(id).get();
+    public ReservationDTO updateReservation(Integer id, ReservationDTO reservationDTO) throws ReservationNotFoundException {
+        ReservationEntity existingEntity = reservationRepository.findById(id).orElseThrow(ReservationNotFoundException::new);
         existingEntity.setReservation(reservationDTO.getReservation());
         existingEntity = reservationRepository.save(existingEntity);
         return reservationMapper.toDTO(existingEntity);
     }
 
-    public void deleteReservation(Integer id) {
+    public void deleteReservation(Integer id) throws ReservationNotFoundException {
+        if (!reservationRepository.existsById(id)) {
+            throw new ReservationNotFoundException();
+        }
         reservationRepository.deleteById(id);
     }
 

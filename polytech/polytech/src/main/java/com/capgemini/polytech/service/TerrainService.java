@@ -2,8 +2,10 @@ package com.capgemini.polytech.service;
 
 import com.capgemini.polytech.dto.TerrainDTO;
 import com.capgemini.polytech.entite.TerrainEntity;
+import com.capgemini.polytech.exception.TerrainNotFoundException;
 import com.capgemini.polytech.mapper.TerrainMapper;
 import com.capgemini.polytech.repository.TerrainRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -45,13 +47,13 @@ public class TerrainService {
         return dtos;
     }
 
-    public TerrainDTO getTerrain(Integer id) {
-        TerrainEntity entity = terrainRepository.findById(id).get();
+    public TerrainDTO getTerrain(Integer id) throws TerrainNotFoundException {
+        TerrainEntity entity = terrainRepository.findById(id).orElseThrow(TerrainNotFoundException::new);
         return terrainMapper.toDTO(entity);
     }
 
     public TerrainDTO updateTerrain(Integer id, TerrainDTO terrain) {
-        TerrainEntity existingEntity = terrainRepository.findById(id).get();
+        TerrainEntity existingEntity = terrainRepository.findById(id).orElseThrow(TerrainNotFoundException::new);
         existingEntity.setNom(terrain.getNom());
         existingEntity.setQuantite(terrain.getQuantite());
         existingEntity.setDescription(terrain.getDescription());
@@ -61,6 +63,9 @@ public class TerrainService {
     }
 
     public void deleteTerrain(Integer id) {
+        if (!terrainRepository.existsById(id)) {
+            throw new TerrainNotFoundException();
+        }
         terrainRepository.deleteById(id);
     }
 }

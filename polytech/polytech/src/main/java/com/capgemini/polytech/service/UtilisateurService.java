@@ -2,6 +2,7 @@ package com.capgemini.polytech.service;
 
 import com.capgemini.polytech.dto.UtilisateurDTO;
 import com.capgemini.polytech.entite.UtilisateurEntity;
+import com.capgemini.polytech.exception.UtilisateurNotFoundException;
 import com.capgemini.polytech.mapper.UtilisateurMapper;
 import com.capgemini.polytech.repository.UtilisateurRepository;
 import org.springframework.stereotype.Service;
@@ -43,13 +44,13 @@ public class UtilisateurService {
         return dtos;
     }
 
-    public UtilisateurDTO getUtilisateur(Integer id) {
-        UtilisateurEntity entity = utilisateurRepository.findById(id).get();
+    public UtilisateurDTO getUtilisateur(Integer id) throws UtilisateurNotFoundException {
+        UtilisateurEntity entity = utilisateurRepository.findById(id).orElseThrow(UtilisateurNotFoundException::new);
         return utilisateurMapper.toDTO(entity);
     }
 
-    public UtilisateurDTO updateUtilisateur(Integer id, UtilisateurDTO utilisateur) {
-        UtilisateurEntity existingEntity = utilisateurRepository.findById(id).get();
+    public UtilisateurDTO updateUtilisateur(Integer id, UtilisateurDTO utilisateur) throws UtilisateurNotFoundException {
+        UtilisateurEntity existingEntity = utilisateurRepository.findById(id).orElseThrow(UtilisateurNotFoundException::new);
         existingEntity.setNom(utilisateur.getNom());
         existingEntity.setPrenom(utilisateur.getPrenom());
         existingEntity.setEmail(utilisateur.getEmail());
@@ -59,7 +60,10 @@ public class UtilisateurService {
         return utilisateurMapper.toDTO(existingEntity);
     }
 
-    public void deleteUtilisateur(Integer id) {
+    public void deleteUtilisateur(Integer id) throws UtilisateurNotFoundException {
+        if (!utilisateurRepository.existsById(id)){
+            throw new UtilisateurNotFoundException();
+        }
         utilisateurRepository.deleteById(id);
     }
 }
