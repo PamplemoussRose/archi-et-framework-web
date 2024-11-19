@@ -30,6 +30,8 @@ public class UtilisateurService {
      */
 
     public UtilisateurDTO createUtilisateur(UtilisateurDTO utilisateurDTO) {
+        // Prends un DTO, transform en entité pour creer l'utilisateur et renvoie un DTO pour
+        // recuperer les infos de l'utilisateur
         UtilisateurEntity entity = utilisateurMapper.toEntity(utilisateurDTO);
         entity = utilisateurRepository.save(entity);
         return utilisateurMapper.toDTO(entity);
@@ -37,7 +39,7 @@ public class UtilisateurService {
 
     public List<UtilisateurDTO> getAllUtilisateurs() {
         List<UtilisateurEntity> entities = utilisateurRepository.findAll();
-        List<UtilisateurDTO> dtos = new ArrayList<>();
+        List<UtilisateurDTO> dtos = new ArrayList<UtilisateurDTO>();
         for (UtilisateurEntity entity : entities) {
             dtos.add(utilisateurMapper.toDTO(entity));
         }
@@ -53,7 +55,7 @@ public class UtilisateurService {
         UtilisateurEntity existingEntity = utilisateurRepository.findById(id).orElseThrow(UtilisateurNotFoundException::new);
         existingEntity.setNom(utilisateur.getNom());
         existingEntity.setPrenom(utilisateur.getPrenom());
-        existingEntity.setEmail(utilisateur.getEmail());
+        existingEntity.setMail(utilisateur.getMail());
         existingEntity.setPassword(utilisateur.getPassword());
         existingEntity.setUsername(utilisateur.getUsername());
         existingEntity = utilisateurRepository.save(existingEntity);

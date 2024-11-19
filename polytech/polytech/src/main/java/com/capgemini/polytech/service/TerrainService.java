@@ -5,7 +5,6 @@ import com.capgemini.polytech.entite.TerrainEntity;
 import com.capgemini.polytech.exception.TerrainNotFoundException;
 import com.capgemini.polytech.mapper.TerrainMapper;
 import com.capgemini.polytech.repository.TerrainRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
