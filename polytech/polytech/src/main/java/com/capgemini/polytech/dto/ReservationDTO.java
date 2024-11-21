@@ -2,6 +2,11 @@ package com.capgemini.polytech.dto;
 
 import lombok.*;
 
+/**
+ * Classe DTO (Data Transfer Object) pour représenter une réservation.
+ * Elle contient les informations nécessaires pour effectuer des opérations
+ * liées aux réservations entre le client et le serveur.
+ */
 @Builder
 @Getter
 @Setter
@@ -11,9 +16,18 @@ import lombok.*;
 @EqualsAndHashCode
 public class ReservationDTO {
 
-    private int utilisateurId;
+    /**
+     * Identifiant de l'utilisateur associé à la réservation.
+     */
+    private int utilisateur_id;
 
-    private int terrainId;
+    /**
+     * Identifiant du terrain réservé.
+     */
+    private int terrain_id;
 
+    /**
+     * Nombre de places de la réservation.
+     */
     private int reservation;
 }

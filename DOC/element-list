@@ -1,0 +1,8 @@
+com.capgemini.polytech
+com.capgemini.polytech.controller
+com.capgemini.polytech.dto
+com.capgemini.polytech.entite
+com.capgemini.polytech.exception
+com.capgemini.polytech.mapper
+com.capgemini.polytech.repository
+com.capgemini.polytech.service
