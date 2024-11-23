@@ -9,9 +9,9 @@ import lombok.*;
  * sur un terrain, telles que son nom, sa quantité, sa description et son point géographique.
  */
 @Entity(name = "terrain")
+@Builder
 @Getter
 @Setter
-@Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @ToString

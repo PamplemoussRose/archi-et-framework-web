@@ -17,6 +17,11 @@ import lombok.*;
 public class TerrainDTO {
 
     /**
+     * Id de l'utilisateur.
+     */
+    private int id;
+
+    /**
      * Nom du terrain.
      */
     private String nom;

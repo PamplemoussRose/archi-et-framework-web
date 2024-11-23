@@ -17,6 +17,11 @@ import lombok.*;
 public class UtilisateurDTO {
 
     /**
+     * Id de l'utilisateur.
+     */
+    private int id;
+
+    /**
      * Nom de l'utilisateur.
      */
     private String nom;
