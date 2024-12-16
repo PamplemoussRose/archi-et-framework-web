@@ -23,4 +23,18 @@ class TerrainMapperTest {
 
         assertEquals(42, terrainDTO.getId());
     }
+
+    @Test
+    void toEntity() {
+        TerrainDTO terrainDTO = TerrainDTO.builder()
+                .id(42)
+                .nom("Parc")
+                .description("desc")
+                .quantite(15)
+                .point_geo("0, 0")
+                .build();
+        TerrainEntity terrainEntity = terrainMapper.toEntity(terrainDTO);
+
+        assertEquals(42, terrainEntity.getId());
+    }
 }

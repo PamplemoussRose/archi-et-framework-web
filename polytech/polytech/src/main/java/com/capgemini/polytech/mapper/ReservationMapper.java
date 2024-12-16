@@ -31,8 +31,8 @@ public interface ReservationMapper {
      * @param entity l'entité {@link ReservationEntity} à convertir en DTO.
      * @return l'objet {@link ReservationDTO} correspondant à l'entité.
      */
-    @Mapping(target = "utilisateur_id", expression = "java(getUtilisateurId(entity))")
-    @Mapping(target = "terrain_id", expression = "java(getTerrainId(entity))")
+    @Mapping(target = "idUtilisateur", expression = "java(getUtilisateurId(entity))")
+    @Mapping(target = "idTerrain", expression = "java(getTerrainId(entity))")
     ReservationDTO toDTO(ReservationEntity entity);
 
     /**
@@ -45,7 +45,7 @@ public interface ReservationMapper {
      * @return un objet {@link ReservationId} construit à partir des données du DTO.
      */
     default ReservationId createReservationId(ReservationDTO dto) {
-        return new ReservationId(dto.getUtilisateur_id(), dto.getTerrain_id());
+        return new ReservationId(dto.getIdUtilisateur(), dto.getIdTerrain());
     }
 
     /**

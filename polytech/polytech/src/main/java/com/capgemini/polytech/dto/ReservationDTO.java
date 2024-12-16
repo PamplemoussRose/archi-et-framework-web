@@ -19,12 +19,12 @@ public class ReservationDTO {
     /**
      * Identifiant de l'utilisateur associé à la réservation.
      */
-    private int utilisateur_id;
+    private int idUtilisateur;
 
     /**
      * Identifiant du terrain réservé.
      */
-    private int terrain_id;
+    private int idTerrain;
 
     /**
      * Nombre de places de la réservation.

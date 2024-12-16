@@ -95,8 +95,8 @@ public class ReservationService {
     public ReservationDTO getReservation(ReservationDTO reservationDTO) throws ReservationNotFoundException {
         // Création de l'identifiant composite à partir des données du DTO
         ReservationId reservationId = new ReservationId(
-                reservationDTO.getUtilisateur_id(),
-                reservationDTO.getTerrain_id()
+                reservationDTO.getIdUtilisateur(),
+                reservationDTO.getIdTerrain()
         );
 
         // Recherche de la réservation avec l'identifiant composite
@@ -120,8 +120,8 @@ public class ReservationService {
     public ReservationDTO updateReservation(ReservationDTO reservationDTO) throws ReservationNotFoundException {
         // Création de l'identifiant composite à partir des données du DTO
         ReservationId reservationId = new ReservationId(
-                reservationDTO.getUtilisateur_id(),
-                reservationDTO.getTerrain_id()
+                reservationDTO.getIdUtilisateur(),
+                reservationDTO.getIdTerrain()
         );
 
         // Recherche de la réservation existante avec l'identifiant composite
@@ -150,8 +150,8 @@ public class ReservationService {
     public void deleteReservation(ReservationDTO reservationDTO) throws ReservationNotFoundException {
         // Création de l'identifiant composite à partir des données du DTO
         ReservationId reservationId = new ReservationId(
-                reservationDTO.getUtilisateur_id(),
-                reservationDTO.getTerrain_id()
+                reservationDTO.getIdUtilisateur(),
+                reservationDTO.getIdTerrain()
         );
 
         // Vérification de l'existence de la réservation avant de la supprimer

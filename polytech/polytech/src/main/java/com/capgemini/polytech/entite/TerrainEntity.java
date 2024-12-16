@@ -41,7 +41,6 @@ public class TerrainEntity {
     /**
      * Description du terrain.
      */
-    @NonNull
     private String description;
 
     /**
