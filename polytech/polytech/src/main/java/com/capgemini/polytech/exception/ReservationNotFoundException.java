@@ -12,7 +12,7 @@ import java.io.Serial;
  * Elle est annotée avec {@link ResponseStatus} pour retourner une réponse HTTP 404 (NOT_FOUND)
  * avec un message personnalisé.
  */
-@ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "The character has not been found.")
+@ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "Cette reservation n'existe pas.")
 public class ReservationNotFoundException extends RuntimeException {
 
     /**
